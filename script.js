@@ -1,216 +1,154 @@
-:root{
-  --bg:#05090b; --surface:#0a0f12; --surface2:#0f1519;
-  --text:#e7f7f4; --muted:#a6c8bf;
-  --brand:#5de0b6; --brand2:#2cc6ff;
-  --stroke:rgba(93,224,182,.25);
-}
+/* === Sempre começar no topo === */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("load", () => window.scrollTo(0, 0));
 
-/* ===== Reset e base ===== */
-*{ box-sizing:border-box; margin:0; padding:0 }
-html, body{ width:100%; min-height:100%; overflow-x:hidden; } /* evita scroll lateral */
-html{ scroll-behavior:smooth }
-body{
-  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
-  background:var(--bg); color:var(--text); line-height:1.55;
-}
-img{ max-width:100%; height:auto; display:block } /* imagens sempre dentro da tela */
-a{ text-decoration:none; color:inherit }
-h1,h2{ line-height:1.2 }
-.section{ padding:56px 0 }
+/* ================== LOADER ROBUSTO ================== */
+(function loaderBoot() {
+  const text = "CiberServer Soluções em Tecnologia";
+  const loader = document.getElementById("loader");
+  const typing = document.getElementById("typing");
+  if (!loader) return;
 
-/* ===== Container centralizado e fluido ===== */
-.container{
-  width:100%;
-  max-width:1080px;
-  margin:0 auto;
-  padding-inline:16px;
-}
-h2{ color:var(--brand); text-align:center; margin-bottom:14px }
+  const LOADER_MAX = 6000;
+  let hidden = false;
+  setTimeout(forceHideLoader, LOADER_MAX);
 
-/* ===== Loader ===== */
-#loader{
-  position:fixed; inset:0; display:grid; place-items:center;
-  background:#000; z-index:9999; font-weight:900; letter-spacing:.3px;
-  text-shadow:0 0 16px rgba(93,224,182,.35)
-}
-#loader #typing{font-size:clamp(18px,3.4vw,28px);color:#eafff7;filter:drop-shadow(0 0 8px rgba(93,224,182,.35))}
-#loader .cursor{color:var(--brand);animation:blink 1s infinite}
-#loader.fadeout{opacity:0;transition:opacity .6s ease;pointer-events:none}
-@keyframes blink{50%{opacity:0}}
-
-/* ===== Header ===== */
-.header{
-  position:sticky; top:0; z-index:1000;
-  background:rgba(0,0,0,.45); backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--stroke);
-}
-.header-inner{
-  display:grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items:center; gap:16px; padding:12px 0;
-}
-.brand{ display:flex; align-items:center; gap:12px; justify-self:start }
-.logo{ width:40px; height:40px; border-radius:10px; background:#000; border:1px solid #0d1416 }
-
-/* Botão hamburguer (desktop = escondido) */
-#menu-toggle{
-  display:none; font-size:26px; color:var(--brand);
-  background:none; border:none; cursor:pointer; z-index:1001;
-}
-
-/* Nav padrão (desktop) */
-#nav-menu{
-  justify-self:center;
-  display:flex; gap:18px; align-items:center; flex-wrap:wrap;
-  transition:transform .35s ease;
-}
-#nav-menu a{ color:var(--muted); font-weight:800 }
-#nav-menu a:hover{ color:#fff }
-
-/* ===== Botões ===== */
-.btn{
-  display:inline-block; text-align:center;
-  padding:10px 16px; border-radius:10px;
-  background:linear-gradient(180deg,var(--brand),var(--brand2));
-  color:#001010; font-weight:900
-}
-.btn.ghost{ background:transparent; color:var(--text); border:1px solid var(--stroke) }
-.btn.small{ padding:8px 12px }
-
-/* ===== Hero ===== */
-.hero{ position:relative; min-height:68vh; overflow:hidden; border-bottom:1px solid var(--stroke) }
-.hero-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center }
-.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82) 70%) }
-.hero-copy{ position:relative; z-index:1; display:grid; place-content:center; min-height:68vh; text-align:center }
-.hero-copy h1{ font-size:clamp(26px,6vw,52px); color:var(--brand) }
-.hero-copy p{ margin-top:8px; color:#d8f7ee }
-.cta{ margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
-
-/* ===== Cards (Nossos Serviços) ===== */
-.cards{
-  display:grid; gap:18px; width:100%; justify-content:center;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  margin-top:12px;
-}
-.card{
-  background:linear-gradient(180deg,var(--surface),var(--surface2));
-  border:1px solid var(--stroke); border-radius:14px; padding:18px
-}
-.card h3{ color:var(--brand); margin-bottom:6px }
-.card p{ color:var(--muted) }
-
-/* ===== Métricas ===== */
-.metrics-grid{
-  display:grid; gap:18px; width:100%; justify-content:center;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  margin-top:14px
-}
-.metric{
-  display:flex; align-items:center; gap:14px; padding:16px;
-  border-radius:12px; background:linear-gradient(180deg,var(--surface),var(--surface2));
-  border:1px solid var(--stroke)
-}
-.metric .icon{ font-size:28px }
-.metric .meta{ display:grid; gap:2px }
-.metric .number{ font-size:clamp(22px,3.2vw,32px); color:var(--brand); font-weight:900; line-height:1 }
-.metric h3{ font-size:1rem; color:#e8fbf6 }
-
-/* ===== Destaques ===== */
-.plans{
-  display:grid; gap:18px; width:100%; justify-content:center;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  margin-top:12px
-}
-.plan{
-  background:linear-gradient(180deg,var(--surface),var(--surface2));
-  border:1px solid var(--stroke); border-radius:14px; padding:18px
-}
-.plan ul{ margin:10px 0 12px 18px }
-.plan.destaque{ border-color:rgba(93,224,182,.6) }
-.badge{
-  display:inline-block; margin-bottom:8px; font-size:.8rem; font-weight:900;
-  padding:4px 8px; border-radius:999px;
-  background:linear-gradient(180deg,var(--brand),var(--brand2)); color:#001010
-}
-.plans .plan .btn{ display:inline-block; margin-top:10px; padding:12px 16px }
-
-/* ===== Contato ===== */
-.form{
-  background:linear-gradient(180deg,var(--surface),var(--surface2));
-  border:1px solid var(--stroke); border-radius:14px; padding:18px
-}
-.form .grid{
-  display:grid; gap:12px;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  margin-bottom:12px
-}
-.form label{ color:var(--muted); font-weight:700; display:grid; gap:6px }
-input,textarea{
-  background:#071114; color:var(--text);
-  border:1px solid var(--stroke); border-radius:10px; padding:10px 12px; outline:none;
-  width:100%;
-}
-input:focus,textarea:focus{ border-color:rgba(120,255,210,.6); box-shadow:0 0 0 3px rgba(120,255,210,.12) }
-.actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:6px }
-.form-status{ margin-top:8px; min-height:1.2em }
-
-/* ===== Footer ===== */
-.footer{ border-top:1px solid var(--stroke); padding:26px 0 }
-.footer .container{ text-align:center }
-
-/* ===== Botão flutuante WhatsApp ===== */
-#whatsapp{
-  position:fixed; right:16px; bottom:16px; width:60px; height:60px; border-radius:50%;
-  display:grid; place-items:center;
-  background:radial-gradient(120% 120% at 30% 20%,var(--brand),var(--brand2));
-  box-shadow:0 10px 20px rgba(0,0,0,.4), 0 8px 16px rgba(93,224,182,.35);
-  border:1px solid rgba(255,255,255,.06);
-  transition:transform .2s ease, box-shadow .2s ease;
-  z-index:999
-}
-#whatsapp:hover{ transform:scale(1.08) }
-.whatsapp-icon{ width:34px; height:34px; object-fit:contain }
-
-/* ===== Efeitos ===== */
-.fade-up{ opacity:0; transform:translateY(20px); transition:.6s ease }
-.fade-up.show{ opacity:1; transform:none }
-
-/* ===== Mobile: menu off-canvas sem overflow ===== */
-@media (max-width: 820px){
-  #menu-toggle{ display:block }          /* mostra o hambúrguer */
-
-  /* nav vira painel lateral usando transform (não empurra a página) */
-  #nav-menu{
-    position:fixed; top:0; right:0;
-    width:min(86vw, 380px); height:100dvh;
-    background:linear-gradient(180deg,#05090b,#0a0f12);
-    flex-direction:column; justify-content:center; align-items:center; gap:24px;
-    border-left:1px solid var(--stroke);
-    transform:translateX(100%);          /* escondido fora da tela */
-    will-change:transform;
-    z-index:1000;
-  }
-  #nav-menu.active{ transform:translateX(0) } /* aparece sem gerar scroll lateral */
-
-  /* ao abrir menu, trava a rolagem do body para não “puxar” a tela */
-  body.menu-open{ overflow:hidden }
-  body.menu-open::before{
-    content:""; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999;
+  function forceHideLoader() {
+    if (hidden) return;
+    hidden = true;
+    loader.classList.add("fadeout");
+    setTimeout(() => loader.remove(), 600);
   }
 
-  /* hero mais compacto no mobile */
-  .hero, .hero-copy{ min-height:60vh }
+  function startTyping() {
+    if (!typing) return forceHideLoader();
+    let i = 0;
+    (function typeText() {
+      try {
+        if (i < text.length) {
+          typing.textContent += text.charAt(i++);
+          setTimeout(typeText, 70);
+        } else {
+          setTimeout(forceHideLoader, 500);
+        }
+      } catch { forceHideLoader(); }
+    })();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startTyping);
+  } else {
+    startTyping();
+  }
+  window.addEventListener("pageshow", (e) => { if (e.persisted) forceHideLoader(); });
+})();
+
+/* ================== FADE-UP ================== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add("show");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
+
+/* ================== CONTADOR ================== */
+function animateNumbers() {
+  document.querySelectorAll(".number").forEach((num) => {
+    const target = parseFloat(num.getAttribute("data-target"));
+    if (isNaN(target)) return;
+    const duration = 1500;
+    const start = performance.now();
+    const isFloat = String(target).includes(".");
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const val = target * p;
+      num.textContent = isFloat ? val.toFixed(1) : Math.round(val);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+const metricsSection = document.querySelector("#resultados");
+if (metricsSection) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        animateNumbers();
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.35 });
+  obs.observe(metricsSection);
 }
 
-/* ===== Quebras intermediárias (tablets) ===== */
-@media (max-width: 1024px){
-  .container{ padding-inline:14px }
-  .metric{ padding:14px }
-}
+/* ================== MENU RESPONSIVO (SIDE DRAWER) ================== */
+const menuBtn = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("nav-menu");
+(function menuBoot(){
+  if (!menuBtn || !navMenu) return;
 
-/* ===== Desktop largo: limita colunas para não “esticar” demais ===== */
-@media (min-width: 1100px){
-  .cards{ grid-template-columns:repeat(3,1fr) }
-  .metrics-grid{ grid-template-columns:repeat(4,1fr) }
-  .plans{ grid-template-columns:repeat(3,1fr) }
+  // estado inicial
+  navMenu.classList.remove("active");
+  document.body.classList.remove("menu-open");
+  menuBtn.textContent = "☰";
+
+  // toggle
+  menuBtn.addEventListener("click", () => {
+    const willOpen = !navMenu.classList.contains("active");
+    navMenu.classList.toggle("active", willOpen);
+    document.body.classList.toggle("menu-open", willOpen);
+    menuBtn.textContent = willOpen ? "✕" : "☰";
+  });
+
+  // fecha ao clicar em link
+  document.querySelectorAll("#nav-menu a").forEach(a=>{
+    a.addEventListener("click", ()=>{
+      navMenu.classList.remove("active");
+      document.body.classList.remove("menu-open");
+      menuBtn.textContent = "☰";
+    });
+  });
+
+  // ao sair do mobile, reseta
+  const MQ = window.matchMedia("(min-width: 821px)");
+  MQ.addEventListener("change", () => {
+    if (MQ.matches) {
+      navMenu.classList.remove("active");
+      document.body.classList.remove("menu-open");
+      menuBtn.textContent = "☰";
+    }
+  });
+})();
+
+/* ================== ENVIO WHATSAPP ================== */
+function sendWhats(e) {
+  e.preventDefault();
+  const num = "5517999999999"; // troque pelo seu número
+  const nome = (document.getElementById("fNome")?.value || "").trim();
+  const email = (document.getElementById("fEmail")?.value || "").trim();
+  const fone  = (document.getElementById("fFone")?.value  || "").trim();
+  const empresa = (document.getElementById("fEmpresa")?.value || "").trim();
+  const msg   = (document.getElementById("fMsg")?.value   || "").trim();
+
+  if (!nome || !email || !fone || !msg) {
+    alert("Por favor, preencha todos os campos obrigatórios.");
+    return false;
+  }
+
+  const texto =
+    `Olá! Gostaria de atendimento.\n\n` +
+    `👤 Nome: ${nome}\n` +
+    `📧 E-mail: ${email}\n` +
+    `📞 Telefone: ${fone}\n` +
+    (empresa ? `🏢 Empresa: ${empresa}\n` : "") +
+    `💬 Mensagem: ${msg}`;
+
+  const url = `https://wa.me/${num}?text=${encodeURIComponent(texto)}`;
+  window.open(url, "_blank");
+  const status = document.getElementById("form-status");
+  if (status) status.textContent = "✅ Mensagem aberta no WhatsApp!";
+  return false;
 }
