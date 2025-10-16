@@ -4,7 +4,7 @@ window.addEventListener("load", () => window.scrollTo(0, 0));
 
 /* === Loader (digitando) === */
 document.addEventListener("DOMContentLoaded", () => {
-  const text = "CIBERSERVER Soluções em Tecnologia";
+  const text = ">CiberServer Soluções em Tecnologia";
   const typing = document.getElementById("typing");
   const loader = document.getElementById("loader");
   if (!typing || !loader) return;
