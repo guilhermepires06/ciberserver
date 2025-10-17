@@ -140,11 +140,11 @@ function sendWhats(e) {
 
   const texto =
     `Olá! Gostaria de atendimento.\n\n` +
-    `👤 Nome: ${nome}\n` +
-    `📧 E-mail: ${email}\n` +
-    `📞 Telefone: ${fone}\n` +
-    (empresa ? `🏢 Empresa: ${empresa}\n` : "") +
-    `💬 Mensagem: ${msg}`;
+    ` Nome: ${nome}\n` +
+    ` E-mail: ${email}\n` +
+    ` Telefone: ${fone}\n` +
+    (empresa ? ` Empresa: ${empresa}\n` : "") +
+    ` Mensagem: ${msg}`;
 
   const url = `https://wa.me/${num}?text=${encodeURIComponent(texto)}`;
   window.open(url, "_blank");
