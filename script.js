@@ -126,7 +126,7 @@ const navMenu = document.getElementById("nav-menu");
 /* ================== ENVIO WHATSAPP ================== */
 function sendWhats(e) {
   e.preventDefault();
-  const num = "5517999999999"; // troque pelo seu número
+  const num = "5517991672067"; // troque pelo seu número
   const nome = (document.getElementById("fNome")?.value || "").trim();
   const email = (document.getElementById("fEmail")?.value || "").trim();
   const fone  = (document.getElementById("fFone")?.value  || "").trim();
