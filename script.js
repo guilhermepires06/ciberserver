@@ -4,7 +4,7 @@ window.addEventListener("load", () => window.scrollTo(0, 0));
 
 /* ================== LOADER ROBUSTO ================== */
 (function loaderBoot() {
-  const text = "CiberServer Soluções em Tecnologia";
+  const text = "CyberServer Soluções em Tecnologia";
   const loader = document.getElementById("loader");
   const typing = document.getElementById("typing");
   if (!loader) return;
