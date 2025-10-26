@@ -27,6 +27,26 @@ h1,h2{ line-height:1.2 }
 }
 h2{ color:var(--brand); text-align:center; margin-bottom:14px }
 
+/* Botão ERP discreto no menu */
+#nav-menu .btn {
+  font-size: 0.95rem;
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+  transition: 0.3s;
+  font-weight: 500;
+  margin-left: 12px;
+}
+
+#nav-menu .btn:hover {
+  background: rgba(0, 170, 255, 0.15);
+  border-color: rgba(0, 170, 255, 0.4);
+  color: #00aaff;
+}
+
+
 /* ===== Loader ===== */
 #loader{
   position:fixed; inset:0; display:grid; place-items:center;
