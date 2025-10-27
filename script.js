@@ -21,10 +21,11 @@ window.addEventListener("load", () => window.scrollTo(0, 0));
                               : (performance.navigation && performance.navigation.type === 1);
 
     // Texto (curto no mobile)
-    const FULL_TEXT = "CYBERSERVER – Soluções em Tecnologia";
-    const SHORT_TEXT = "CYBERSERVER";
-    const isMobile = window.innerWidth < 480;
-    const text = isMobile ? SHORT_TEXT : FULL_TEXT;
+const FULL_TEXT = "CYBERSERVER – Soluções em Tecnologia";
+const MOBILE_TEXT = "CYBERSERVER - \nSoluções em Tecnologia";
+const isNarrow = window.innerWidth < 480;
+const text = isNarrow ? MOBILE_TEXT : FULL_TEXT;
+
 
     // Só pula o loader se NÃO for reload e já tiver sido visto
     const seenOnce = safeSession.get("seenLoader") === "1";
