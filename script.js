@@ -29,7 +29,7 @@ window.addEventListener("load", () => window.scrollTo(0, 0));
   let rafId = null;
 
   // Duração alvo do typing (dinâmica conforme tamanho do texto)
-  const TYPE_MS = Math.min(900, Math.max(500, text.length * 50)); // 500–900ms
+  const TYPE_MS = Math.min(900, Math.max(500, text.length * 22)); // 500–900ms
   const FADE_MS = 250; // fade mais curto
   const HARD_MAX = TYPE_MS + 400; // garante fechamento
 
