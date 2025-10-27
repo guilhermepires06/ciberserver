@@ -2,45 +2,85 @@
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.addEventListener("load", () => window.scrollTo(0, 0));
 
-/* ================== LOADER ROBUSTO ================== */
+/* ================== LOADER TURBO ================== */
 (function loaderBoot() {
-  const text = "CyberServer Soluções em Tecnologia";
   const loader = document.getElementById("loader");
   const typing = document.getElementById("typing");
   if (!loader) return;
 
-  const LOADER_MAX = 6000;
-  let hidden = false;
-  setTimeout(forceHideLoader, LOADER_MAX);
+  // Texto mais curto para acelerar a percepção
+  const FULL_TEXT = "CYBERSERVER – Soluções em Tecnologia";
+  const SHORT_TEXT = "CYBERSERVER";
+  const isMobile = window.innerWidth < 480;
+  const text = isMobile ? SHORT_TEXT : FULL_TEXT;
 
-  function forceHideLoader() {
+  // Pula o loader em visitas seguintes
+  const seen = sessionStorage.getItem("seenLoader") === "1";
+
+  // Fecha rápido em qualquer interação
+  const skipEvents = ["click","scroll","keydown","touchstart"];
+  skipEvents.forEach(ev => window.addEventListener(ev, forceHideLoader, { once:true, passive:true }));
+
+  // Respeita prefers-reduced-motion
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced || seen) return forceHideLoader(true);
+
+  let hidden = false;
+  let rafId = null;
+
+  // Duração alvo do typing (dinâmica conforme tamanho do texto)
+  const TYPE_MS = Math.min(900, Math.max(500, text.length * 22)); // 500–900ms
+  const FADE_MS = 250; // fade mais curto
+  const HARD_MAX = TYPE_MS + 400; // garante fechamento
+
+  const t0 = performance.now();
+  if (typing) typing.textContent = "";
+
+  function tick(now) {
+    if (hidden) return;
+    const elapsed = now - t0;
+    // Progresso 0..1 do typing
+    const p = Math.min(1, elapsed / TYPE_MS);
+    if (typing) {
+      const chars = Math.ceil(p * text.length);
+      typing.textContent = text.slice(0, chars);
+    }
+    if (p < 1) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      // terminou de "digitar": fecha rapidinho
+      setTimeout(forceHideLoader, 100);
+    }
+  }
+
+  function forceHideLoader(immediate = false) {
     if (hidden) return;
     hidden = true;
-    loader.classList.add("fadeout");
-    setTimeout(() => loader.remove(), 600);
+    if (rafId) cancelAnimationFrame(rafId);
+    try {
+      if (immediate) {
+        loader.remove();
+      } else {
+        loader.classList.add("fadeout-fast");
+        setTimeout(() => loader.remove(), FADE_MS);
+      }
+    } catch {}
+    // marca que já mostramos uma vez
+    try { sessionStorage.setItem("seenLoader", "1"); } catch {}
   }
 
-  function startTyping() {
-    if (!typing) return forceHideLoader();
-    let i = 0;
-    (function typeText() {
-      try {
-        if (i < text.length) {
-          typing.textContent += text.charAt(i++);
-          setTimeout(typeText, 70);
-        } else {
-          setTimeout(forceHideLoader, 500);
-        }
-      } catch { forceHideLoader(); }
-    })();
-  }
+  // garante que não passe de HARD_MAX mesmo se algo travar
+  setTimeout(() => forceHideLoader(), HARD_MAX);
 
+  // Inicia digitação quando o DOM estiver pronto
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", startTyping);
+    document.addEventListener("DOMContentLoaded", () => requestAnimationFrame(tick));
   } else {
-    startTyping();
+    requestAnimationFrame(tick);
   }
-  window.addEventListener("pageshow", (e) => { if (e.persisted) forceHideLoader(); });
+
+  // Volta do bfcache? Não mostra loader.
+  window.addEventListener("pageshow", (e) => { if (e.persisted) forceHideLoader(true); });
 })();
 
 /* ================== FADE-UP ================== */
