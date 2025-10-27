@@ -2,7 +2,7 @@
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.addEventListener("load", () => window.scrollTo(0, 0));
 
-/* ================== LOADER TURBO (mostra em reload) ================== */
+/* ================== LOADER TURBO  ================== */
 (function loaderBoot() {
   try {
     const loader = document.getElementById("loader");
@@ -15,19 +15,18 @@ window.addEventListener("load", () => window.scrollTo(0, 0));
       set(k,v){ try { sessionStorage.setItem(k,v); } catch {} }
     };
 
-    // Detecta se é um reload da página
+    // Detecta reload (para mostrar o loader de novo no F5)
     const navEntry = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || null;
     const isReload = navEntry ? navEntry.type === "reload"
                               : (performance.navigation && performance.navigation.type === 1);
 
-    // Texto (curto no mobile)
-const FULL_TEXT = "CYBERSERVER – Soluções em Tecnologia";
-const MOBILE_TEXT = "CYBERSERVER - \nSoluções em Tecnologia";
-const isNarrow = window.innerWidth < 480;
-const text = isNarrow ? MOBILE_TEXT : FULL_TEXT;
+    // Texto responsivo (duas linhas no mobile)
+    const FULL_TEXT   = "CYBERSERVER – Soluções em Tecnologia";
+    const MOBILE_TEXT = "CYBERSERVER\nSoluções em Tecnologia";
+    const isNarrow = window.innerWidth < 480;
+    const text = isNarrow ? MOBILE_TEXT : FULL_TEXT;
 
-
-    // Só pula o loader se NÃO for reload e já tiver sido visto
+    // Pula somente navegação intra-aba (não em reload)
     const seenOnce = safeSession.get("seenLoader") === "1";
     const shouldSkip = !isReload && seenOnce;
 
@@ -51,29 +50,28 @@ const text = isNarrow ? MOBILE_TEXT : FULL_TEXT;
           setTimeout(() => reallyRemove(loader), FADE_MS);
         }
       } catch {}
-      // marca como visto (para pular em navegação dentro da mesma aba)
       safeSession.set("seenLoader", "1");
     }
 
-    // Se for para pular (não é reload e já viu), some já
     if (shouldSkip) return forceHideLoader(true);
 
-    // Fecha rápido em qualquer interação do usuário
+    // Fecha ao interagir
     ["click","scroll","keydown","touchstart"].forEach(ev =>
       window.addEventListener(ev, () => forceHideLoader(), { once:true, passive:true })
     );
 
-    // Respeita prefers-reduced-motion (aqui a gente ainda quer mostrar no reload, mas sem animação)
+    // Respeita prefers-reduced-motion
     const prefersReduced = (() => {
       try { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
       catch { return false; }
     })();
     if (prefersReduced) return forceHideLoader(true);
 
-    // Parâmetros de timing (ritmo confortável)
-    const TYPE_MS   = Math.min(1800, Math.max(1200, text.length * 35));
-    const LINGER_MS = 300;   // pausa ao terminar
-    const FADE_MS   = 300;   // fade suave
+    // 🔔 Ajuste “um pouco mais lento”
+    // antes (~1.5–2.3s), agora ~1.7–2.6s
+    const TYPE_MS   = Math.min(2600, Math.max(1700, text.length * 48));
+    const LINGER_MS = 500;   // pausa ao terminar
+    const FADE_MS   = 400;   // fade um pouco mais demorado
     const HARD_MAX  = TYPE_MS + LINGER_MS + 900;
 
     const t0 = performance.now();
