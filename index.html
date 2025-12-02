@@ -3,329 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>CYBERSERVER • Soluções em tecnologia</title>
-  <meta name="description"
-        content="CYBERSERVER presta serviços profissionais de manutenção em computadores, redes e CFTV, firewall e máquinas virtuais, configuração de impressoras e consultoria em CyberSegurança para empresas.">
-
+  <title>CYBERSERVER Soluções em Tecnologia</title>
+  <meta name="description" content="Infraestrutura, servidores, redes e cibersegurança com foco em desempenho e confiabilidade." />
   <link rel="icon" href="assets/favicon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- HEADER -->
-  <header class="site-header">
+  <!-- Loader -->
+  <div id="loader" aria-live="polite">
+    <span id="typing"></span><span class="cursor">|</span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
     <div class="container header-inner">
-      <a href="#topo" class="brand">
-        <img src="assets/logo.png" alt="Logo Cyberserver" class="brand-logo" />
-        <span class="brand-name">CYBERSERVER</span>
+      <a class="brand" href="#">
+        <img src="assets/logo.png" class="logo" alt="Logo CYBERSERVER" />
+        <strong>CYBERSERVER</strong>
       </a>
 
-      <button id="menu-toggle" aria-label="Abrir menu de navegação">☰</button>
+      <button id="menu-toggle" aria-label="Abrir menu">☰</button>
 
-      <nav id="main-nav" aria-label="Navegação principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#processo">Como trabalhamos</a>
-        <a href="#contato">Contato</a>
+    <nav id="nav-menu">
+  <a href="#servicos">Serviços</a>
+  <a href="#resultados">Resultados</a>
+  <a href="#destaques">Destaques</a>
+  <a class="btn" href="https://guilhermepires.pythonanywhere.com/login" target="_blank" rel="noopener">ERP</a>
+</nav>
       </nav>
     </div>
   </header>
 
-  <main id="topo">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="hero-kicker"></p>
-          <h1>
-           
-            <span class="hero-highlight">Soluções Em Tecnologia</span>
-          </h1>
-          <p class="hero-body">
-            A CYBERSERVER cuida da infraestrutura tecnológica da sua empresa:
-            computadores, rede, câmeras, impressoras, firewall e segurança
-            digital. Você foca no negócio, nós garantimos que tudo funcione.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#contato" class="btn btn-primary">Solicitar atendimento</a>
-            <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
-          </div>
-
-          <p class="hero-note">
-            Atendemos empresas, escritórios e pequenos negócios que precisam de
-            alguém de confiança para cuidar da TI.
-          </p>
-        </div>
-
-        <div class="hero-icons">
-          <div class="hero-icon">
-            <div class="hero-icon-symbol">💻</div>
-            <span>Computadores</span>
-          </div>
-          <div class="hero-icon">
-            <div class="hero-icon-symbol">🌐</div>
-            <span>Rede &amp; CFTV</span>
-          </div>
-          <div class="hero-icon">
-            <div class="hero-icon-symbol">🛡️</div>
-            <span>Firewall &amp; VM</span>
-          </div>
-          <div class="hero-icon">
-            <div class="hero-icon-symbol">🖨️</div>
-            <span>Impressoras</span>
-          </div>
-          <div class="hero-icon">
-            <div class="hero-icon-symbol">🔐</div>
-            <span>CyberSegurança</span>
-          </div>
-        </div>
+  <!-- Hero -->
+  <section class="hero">
+    <img src="assets/fundo.png" alt="Datacenter moderno" class="hero-bg" />
+    <div class="hero-overlay"></div>
+    <div class="hero-copy container">
+      <h1>Infraestrutura e Segurança para crescer com confiança</h1>
+      <p>Projetos de TI sob medida, com desempenho, estabilidade e proteção.</p>
+      <div class="cta">
+        <a href="#servicos" class="btn ghost">Ver serviços</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="section section-soft">
-      <div class="container section-grid">
-        <div class="section-header">
-          <p class="section-kicker">sobre a cyberserver</p>
-          <h2>Suporte técnico direto, sem complicação</h2>
-        </div>
-        <div class="section-content">
-          <p>
-            A CYBERSERVER nasceu para atender empresas que precisam de alguém
-            de confiança para cuidar da parte técnica do dia a dia: computadores,
-            rede, câmeras, impressoras e segurança digital.
-          </p>
-          <p>
-            Nosso foco é prático: entender o cenário, resolver o problema e
-            orientar o que pode ser feito para evitar que volte a acontecer,
-            sempre em linguagem simples.
-          </p>
-
-         
-      </div>
-    </section>
-
-    <!-- SERVIÇOS -->
-    <section id="servicos" class="section">
+  <main>
+    <!-- Serviços -->
+    <section id="servicos" class="section fade-up">
       <div class="container">
-        <div class="section-header section-header-center">
-          <p class="section-kicker">serviços</p>
-          <h2>O que a CYBERSERVER faz pela sua empresa</h2>
-        </div>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <h3>Manutenção em computadores</h3>
-            <p>
-              Manutenção preventiva e corretiva em desktops e notebooks
-              para reduzir lentidão, travamentos e falhas inesperadas.
-            </p>
-            <ul>
-              <li>Limpeza interna e troca de pasta térmica</li>
-              <li>Diagnóstico de hardware e software</li>
-              <li>Formatação, backup e reinstalação limpa</li>
-              <li>Remoção de vírus e programas indesejados</li>
-            </ul>
-          </article>
-
-          <article class="service-card">
-            <h3>Manutenção em sistema de Rede/CFTV</h3>
-            <p>
-              Correções e ajustes em rede cabeada, Wi-Fi e sistemas de câmeras
-              (CFTV) para garantir estabilidade e acesso.
-            </p>
-            <ul>
-              <li>Ajustes em roteadores, switches e access points</li>
-              <li>Correção de quedas de conexão e lentidão</li>
-              <li>Verificação de gravação e acesso às câmeras</li>
-              <li>Organização básica de cabeamento</li>
-            </ul>
-          </article>
-
-          <article class="service-card">
-            <h3>Implementação de firewall &amp; VM</h3>
-            <p>
-              Implantação de firewall e máquinas virtuais para serviços
-              internos, trazendo controle e segurança ao ambiente.
-            </p>
-            <ul>
-              <li>Configuração de firewall dedicado ou em roteadores</li>
-              <li>Regras de acesso interno e externo</li>
-              <li>Criação de VMs para serviços locais</li>
-              <li>Boas práticas de uso e acesso</li>
-            </ul>
-          </article>
-
-          <article class="service-card">
-            <h3>Configuração de impressoras</h3>
-            <p>
-              Instalação e configuração de impressoras locais ou em rede
-              alinhadas ao fluxo de trabalho da sua equipe.
-            </p>
-            <ul>
-              <li>Instalação de drivers e softwares oficiais</li>
-              <li>Compartilhamento de impressoras em rede</li>
-              <li>Ajustes de filas e permissões de impressão</li>
-              <li>Suporte a multifuncionais e scanners</li>
-            </ul>
-          </article>
-
-          <article class="service-card">
-            <h3>Consultoria em CyberSegurança</h3>
-            <p>
-              Avaliação do ambiente e recomendações práticas para reduzir
-              riscos de ataques e perdas de dados.
-            </p>
-            <ul>
-              <li>Revisão de usuários, senhas e acessos</li>
-              <li>Análise básica da exposição da rede</li>
-              <li>Orientação contra golpes e phishing</li>
-              <li>Verificação de backup e recuperação</li>
-            </ul>
-          </article>
+        <h2>Nossos Serviços</h2>
+        <div class="cards">
+          <article class="card"><h3>Servidores</h3><p>Implantação, hardening e monitoramento 24/7.</p></article>
+          <article class="card"><h3>Firewalls</h3><p>Políticas, VPN, IDS/IPS e proteção ativa.</p></article>
+          <article class="card"><h3>Redes</h3><p>Switches, VLANs e Wi-Fi corporativo de alta disponibilidade.</p></article>
+          <article class="card"><h3>Cloud &amp; VM</h3><p>Virtualização, custos otimizados e observabilidade.</p></article>
+          <article class="card"><h3>Backup &amp; DR</h3><p>Estratégia 3-2-1 e testes de restauração.</p></article>
+          <article class="card"><h3>Suporte</h3><p>SLA, inventário e automações para o seu time.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- PROCESSO -->
-    <section id="processo" class="section section-soft">
+    <!-- Resultados -->
+    <section id="resultados" class="section fade-up metrics">
       <div class="container">
-        <div class="section-header section-header-center">
-          <p class="section-kicker">como trabalhamos</p>
-          <h2>Processo simples, focado em resolver</h2>
+        <h2>Resultados e Métricas</h2>
+        <div class="metrics-grid">
+          <div class="metric"><span class="icon">⚙️</span><div class="meta"><p class="number" data-target="150">0</p><h3>Servidores configurados</h3></div></div>
+          <div class="metric"><span class="icon">☁️</span><div class="meta"><p class="number" data-target="800">0</p><h3>Ambientes Cloud gerenciados</h3></div></div>
+          <div class="metric"><span class="icon">🔒</span><div class="meta"><p class="number" data-target="1200">0</p><h3>Incidentes prevenidos</h3></div></div>
+          <div class="metric"><span class="icon">🕒</span><div class="meta"><p class="number" data-target="99.9">0</p><h3>Uptime médio garantido (%)</h3></div></div>
         </div>
+      </div>
+    </section>
 
-        <div class="steps-grid">
-          <div class="step-card">
-            <h3>1. Contato</h3>
-            <p>
-              Você explica o que está acontecendo e qual a urgência
-              do atendimento.
-            </p>
+    <!-- Destaques -->
+    <section id="destaques" class="section fade-up">
+      <div class="container">
+        <h2>Serviços em Destaque</h2>
+        <div class="plans">
+          <div class="plan destaque">
+            <div class="badge">MUITO PROCURADO</div>
+            <h3>Manutenção &amp; Limpeza de PCs</h3>
+            <ul>
+              <li>Limpeza interna completa</li>
+              <li>Troca de pasta térmica</li>
+              <li>Formatação e otimização</li>
+              <li>Remoção de vírus e malware</li>
+            </ul>
+            <a class="btn" target="_blank" href="https://wa.me/5517991672067?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20Manuten%C3%A7%C3%A3o%20%26%20Limpeza%20de%20PCs.">Solicitar atendimento</a>
           </div>
 
-          <div class="step-card">
-            <h3>2. Análise</h3>
-            <p>
-              Entendemos o cenário, avaliamos o que faz sentido e
-              sugerimos os próximos passos.
-            </p>
+          <div class="plan">
+            <h3>Configuração de Servidores &amp; Roteadores</h3>
+            <ul>
+              <li>Instalação e hardening de servidores</li>
+              <li>AD, DNS e compartilhamentos</li>
+              <li>Roteadores, VLANs e QoS</li>
+              <li>Backup e monitoramento básico</li>
+            </ul>
+            <a class="btn small" target="_blank" href="https://wa.me/5517991672067?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20Configura%C3%A7%C3%A3o%20de%20Servidores%20%26%20Roteadores.">Quero este</a>
           </div>
 
-          <div class="step-card">
-            <h3>3. Execução</h3>
-            <p>
-              Realizamos os serviços combinados, remotamente ou
-              presencialmente, com o menor impacto possível.
-            </p>
-          </div>
-
-          <div class="step-card">
-            <h3>4. Acompanhamento</h3>
-            <p>
-              Quando necessário, fazemos visitas periódicas ou
-              atendemos sob chamada, conforme a necessidade da empresa.
-            </p>
+          <div class="plan">
+            <h3>Firewalls &amp; Segurança</h3>
+            <ul>
+              <li>Políticas e segmentação</li>
+              <li>VPN site-to-site e usuário</li>
+              <li>IPS/IDS e relatórios</li>
+              <li>Resposta a incidentes</li>
+            </ul>
+            <a class="btn small" target="_blank" href="https://wa.me/5517991672067?text=Ol%C3%A1!%20Gostaria%20de%20falar%20sobre%20Firewalls%20%26%20Seguran%C3%A7a.">Falar com especialista</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTATO -->
-    <section id="contato" class="section">
+    <!-- Contato -->
+    <section id="contato" class="section fade-up">
       <div class="container">
-        <div class="section-header section-header-center">
-          <p class="section-kicker">contato</p>
-          <h2>Precisa de ajuda com TI na sua empresa?</h2>
-        </div>
-
-        <div class="contact-grid">
-          <form id="formContato" class="contact-form" onsubmit="return sendWhats(event)">
-            <div class="form-grid">
-              <label>
-                Nome
-                <input id="fNome" name="nome" required placeholder="Seu nome completo" />
-              </label>
-              <label>
-                Empresa
-                <input id="fEmpresa" name="empresa" placeholder="Nome da empresa (opcional)" />
-              </label>
-            </div>
-
-            <div class="form-grid">
-              <label>
-                E-mail
-                <input id="fEmail" type="email" name="email" required placeholder="exemplo@empresa.com" />
-              </label>
-              <label>
-                Telefone
-                <input id="fFone" type="tel" name="fone" required placeholder="(00) 00000-0000" />
-              </label>
-            </div>
-
-            <label>
-              Serviço principal que você precisa
-              <select id="fTipo" name="tipo">
-                <option value="">Selecione...</option>
-                <option>Manutenção em computadores</option>
-                <option>Manutenção em sistema de Rede/CFTV</option>
-                <option>Implementação de firewall &amp; VM</option>
-                <option>Configuração de impressoras</option>
-                <option>Consultoria em CyberSegurança</option>
-              </select>
-            </label>
-
-            <label>
-              Resuma o que está acontecendo
-              <textarea id="fMsg" name="mensagem" rows="5" required
-                        placeholder="Ex: computadores lentos, quedas na rede, câmeras fora, impressoras travando ou dúvidas de segurança."></textarea>
-            </label>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary">
-                Enviar e abrir WhatsApp
-              </button>
-              <p id="form-status" class="form-status" aria-live="polite"></p>
-            </div>
-          </form>
-
-          <aside class="contact-aside">
-            <h3>Atendimento via WhatsApp</h3>
-            <p>
-              Se preferir, clique abaixo para abrir o WhatsApp e explicar
-              rapidamente a situação. Depois alinhamos o melhor horário.
-            </p>
-            <a href="https://wa.me/5517991672067"
-               target="_blank" rel="noopener"
-               class="btn btn-ghost wide">
-              Falar com a CYBERSERVER
-            </a>
-
-            <ul class="contact-notes">
-              <li>Atendimento em horário comercial.</li>
-              <li>Suporte remoto e presencial, conforme necessidade.</li>
-              <li>Serviços focados em empresas e pequenos negócios.</li>
-            </ul>
-          </aside>
-        </div>
+        <h2>Fale com a gente</h2>
+        <form class="form" id="formContato" onsubmit="return sendWhats(event)">
+          <div class="grid">
+            <label>Nome <input id="fNome" name="nome" required placeholder="Seu nome completo" /></label>
+            <label>E-mail <input id="fEmail" type="email" name="email" required placeholder="exemplo@dominio.com" /></label>
+            <label>Telefone <input id="fFone" type="tel" name="fone" required placeholder="(00) 00000-0000" /></label>
+            <label>Empresa <input id="fEmpresa" name="empresa" placeholder="Opcional" /></label>
+          </div>
+          <label>Como podemos ajudar?
+            <textarea id="fMsg" name="mensagem" rows="5" required placeholder="Descreva brevemente o que precisa..."></textarea>
+          </label>
+          <div class="actions">
+            <button class="btn" type="submit">Enviar - WhatsApp</button>
+          </div>
+          <p id="form-status" class="form-status"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container">
-      <p>© 2025 CYBERSERVER • Suporte em Computadores, Redes, CFTV, Firewall, Impressoras e CyberSegurança.</p>
+      <p>© 2025 CYBERSERVER Soluções em Tecnologia — Todos os direitos reservados</p>
     </div>
   </footer>
 
-  <!-- WHATSAPP FLOATING BUTTON -->
-  <a id="whatsapp-fab"
-     href="https://wa.me/5517991672067"
-     target="_blank" rel="noopener"
-     aria-label="Falar com a Cyberserver pelo WhatsApp">
-    <img src="assets/whats.png" alt="WhatsApp" />
+  <a id="whatsapp" href="https://wa.me/5517991672067" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <img src="assets/whats.png" alt="WhatsApp" class="whatsapp-icon" />
   </a>
 
   <script src="script.js"></script>
